@@ -63,9 +63,13 @@ const Home = () => {
             </TaskCheckContainer>
             <ButtonContainer>
               <Button
-                color={theme.colors.primary}
+                color={theme.colors.primary.default}
                 onPress={() => navigation.navigate('Task', task)}>
-                <Edit width={15} height={15} fill={theme.colors.primary} />
+                <Edit
+                  width={15}
+                  height={15}
+                  fill={theme.colors.primary.default}
+                />
               </Button>
               <Button
                 color={theme.colors.red}

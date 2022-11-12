@@ -37,8 +37,8 @@ export const ButtonContainer = styled.View`
 `;
 
 export const StyledButton = styled(Button)`
-  background-color: ${({ theme }) => theme.colors.primary};
-  box-shadow: 1px 1px 10px ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.primary.default};
+  box-shadow: 1px 1px 10px ${({ theme }) => theme.colors.primary.default};
   position: absolute;
   bottom: 60px;
   right: 50%;

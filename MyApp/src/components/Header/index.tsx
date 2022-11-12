@@ -8,7 +8,7 @@ const Header = () => {
   const navigate = useNavigation();
   return (
     <Container onPress={() => navigate.goBack()}>
-      <ArrowLeft width={20} height={20} fill={theme.colors.primary} />
+      <ArrowLeft width={20} height={20} fill={theme.colors.primary.default} />
       <StyledText>Voltar para lista de tarefas</StyledText>
     </Container>
   );

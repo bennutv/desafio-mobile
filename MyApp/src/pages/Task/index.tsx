@@ -6,6 +6,9 @@ import { useApi } from '../../hooks/useApi';
 import { Input, StyledButton } from './styles';
 import Toast from 'react-native-toast-message';
 
+const editTaskTitle = 'Preencha os campos abaixo para editar a sua tarefa';
+const addTaskTitle = 'Preencha os campos abaixo para adicionar uma nova tarefa';
+
 const Task = () => {
   const navigation = useNavigation();
   const { addTask, editTask } = useApi();
@@ -55,15 +58,13 @@ const Task = () => {
 
   const handleSubmitTask = params ? handleEditTask : handleCreateTask;
 
+  const hasNoTask = !newTitle || !newDescription;
+
   return (
     <PageContainer
       taskPage
       pageTitle={params ? 'Editar tarefa' : 'Nova Tarefa'}
-      pageSubtitle={
-        params
-          ? 'Preencha os campos abaixo para editar a sua tarefa'
-          : 'Preencha os campos abaixo para adicionar uma nova tarefa'
-      }>
+      pageSubtitle={params ? editTaskTitle : addTaskTitle}>
       <Input
         placeholder="Título"
         value={newTitle || title}
@@ -74,9 +75,9 @@ const Task = () => {
         value={newDescription || description}
         onChangeText={setNewDescription}
       />
-      <StyledButton onPress={handleSubmitTask}>
+      <StyledButton disabled={hasNoTask} onPress={handleSubmitTask}>
         <Text color="white" weight="bold">
-          Add task
+          {params ? 'Salvar' : 'Add task'}
         </Text>
       </StyledButton>
     </PageContainer>

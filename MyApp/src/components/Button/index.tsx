@@ -1,8 +1,14 @@
 import React from 'react';
-
 import { Container } from './style';
 
-const Button = ({ children, color, onPress, ...props }: any) => {
+interface ButtonProps {
+  children: any;
+  color?: string;
+  onPress: () => void;
+  props?: any;
+}
+
+const Button = ({ children, color, onPress, ...props }: ButtonProps) => {
   return (
     <Container color={color} onPress={onPress} {...props}>
       {children}

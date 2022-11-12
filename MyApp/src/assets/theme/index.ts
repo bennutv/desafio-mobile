@@ -4,7 +4,10 @@ const theme: DefaultTheme = {
   colors: {
     white: '#FFFFFF',
     black: '#24292E',
-    primary: '#36B3CA',
+    primary: {
+      default: '#36B3CA',
+      light: '#78CCDB',
+    },
     red: '#FF7878',
     gray: {
       '02': '#333333',
