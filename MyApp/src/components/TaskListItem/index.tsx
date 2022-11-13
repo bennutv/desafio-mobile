@@ -2,11 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Task } from '../../models';
 import { Button } from '../Button';
-//TODO: gambiarra?
 import { theme } from '../../assets/theme';
-import Trash from '../../../assets/imgs/trash.svg';
-import Edit from '../../../assets/imgs/edit.svg';
-import Toast from 'react-native-toast-message';
 import {
   ButtonContainer,
   CheckButton,
@@ -22,6 +18,9 @@ import {
   useDeleteTaskMutation,
   useUpdateTaskMutation,
 } from '../../store/features/api/task';
+import Trash from '../../../assets/imgs/trash.svg';
+import Edit from '../../../assets/imgs/edit.svg';
+import Toast from 'react-native-toast-message';
 
 const TaskListItem = ({ item: task }: { item: Task }) => {
   const navigation = useNavigation<StackNavigationProp<ParamList>>();

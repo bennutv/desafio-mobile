@@ -3,12 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { PageContainer } from '../../components/PageContainer';
 import { Text } from '../../components/Text';
 import { Input, StyledButton } from './styles';
-import Toast from 'react-native-toast-message';
 import { ParamList } from '../../navigation';
 import {
   useAddTaskMutation,
   useUpdateTaskMutation,
 } from '../../store/features/api/task';
+import Toast from 'react-native-toast-message';
 
 const editTaskTitle = 'Preencha os campos abaixo para editar a sua tarefa';
 const addTaskTitle = 'Preencha os campos abaixo para adicionar uma nova tarefa';

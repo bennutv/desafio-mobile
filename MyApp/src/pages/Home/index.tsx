@@ -1,19 +1,18 @@
 import React from 'react';
 import { FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { PageContainer } from '../../components/PageContainer';
-import Plus from '../../assets/imgs/plus.svg';
 import { Divider, StyledButton } from './styles';
 import { ParamList } from '../../navigation';
-import { StackNavigationProp } from '@react-navigation/stack';
 import { useTasksQuery } from '../../store/features/api/task';
 import { TaskListItem } from '../../components/TaskListItem';
+import Plus from '../../assets/imgs/plus.svg';
 
 const Home = () => {
   const navigation = useNavigation<StackNavigationProp<ParamList>>();
   const { data, isLoading, refetch } = useTasksQuery('Task');
 
-  console.log(data);
   return (
     <PageContainer
       pageTitle="Lista de tarefas"
