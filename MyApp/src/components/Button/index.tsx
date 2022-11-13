@@ -5,6 +5,7 @@ interface ButtonProps {
   children: ReactElement;
   color?: string;
   onPress: () => void;
+  testID?: string;
 }
 
 const Button = ({ children, color, onPress, ...props }: ButtonProps) => {

@@ -7,12 +7,13 @@ import { Divider, StyledButton } from './styles';
 import { ParamList } from '../../navigation';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useTasksQuery } from '../../store/features/api/task';
-import { TaskListItem } from './TaskListItem';
+import { TaskListItem } from '../../components/TaskListItem';
 
 const Home = () => {
   const navigation = useNavigation<StackNavigationProp<ParamList>>();
   const { data, isLoading, refetch } = useTasksQuery('Task');
 
+  console.log(data);
   return (
     <PageContainer
       pageTitle="Lista de tarefas"
@@ -26,7 +27,9 @@ const Home = () => {
           onRefresh={refetch}
           ItemSeparatorComponent={() => <Divider />}
         />
-        <StyledButton onPress={() => navigation.navigate('Task')}>
+        <StyledButton
+          onPress={() => navigation.navigate('Task')}
+          testID="add-button">
           <Plus width={35} height={35} fill="white" />
         </StyledButton>
       </>
