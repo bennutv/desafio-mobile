@@ -30,36 +30,19 @@ const TaskListItem = ({ item: task }: { item: Task }) => {
   const [editTask, { isError: isEditError, error: editError }] =
     useUpdateTaskMutation();
 
-  const handleDeleteTask = async (id: number) => {
-    try {
-      await deleteTask({ id: id });
-    } catch (err) {
-      Toast.show({
-        type: 'error',
-        text1: 'Falha ao excluir a task',
-        text2: err.message,
-      });
-    }
+  const handleDeleteTask = (id: number) => {
+    deleteTask({ id: id });
   };
 
   const handleCompleteTask = (taskItem: Task) => {
-    console.log('lalala');
-    try {
-      editTask({ ...taskItem, done: !taskItem.done });
-    } catch (err) {
-      Toast.show({
-        type: 'error',
-        text1: 'Falha ao marcar a task como concluída',
-        text2: err.message,
-      });
-    }
+    editTask({ ...taskItem, done: !taskItem.done });
   };
 
   useEffect(() => {
     if (isEditError) {
       Toast.show({
         type: 'error',
-        text1: 'Falha ao editar a task',
+        text1: 'Falha ao marcar a task como concluída',
         text2: JSON.stringify(editError),
       });
     }
