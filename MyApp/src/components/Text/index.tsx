@@ -7,8 +7,7 @@ interface TextProps {
   weight?: string;
   size?: number;
   taskCompleted?: boolean;
-  props?: any;
-  children: any;
+  children: string;
 }
 
 const Text = ({

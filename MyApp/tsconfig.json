@@ -6,6 +6,8 @@
     "types": [
       "@types/styled-components-react-native"
     ],
+    "strict": true,
+    "useUnknownInCatchVariables": false,
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
     /* Completeness */

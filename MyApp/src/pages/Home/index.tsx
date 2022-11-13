@@ -22,10 +22,12 @@ import {
   TextContainer,
 } from './styles';
 import { Text } from '../../components/Text';
+import { ParamList } from '../../navigation';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 const Home = () => {
   const { tasks, deleteTask, editTask } = useApi();
-  const navigation = useNavigation<any>();
+  const navigation = useNavigation<StackNavigationProp<ParamList>>();
 
   const handleDeleteTask = async (id: number) => {
     try {
@@ -87,12 +89,14 @@ const Home = () => {
     <PageContainer
       pageTitle="Lista de tarefas"
       pageSubtitle="Aqui está a sua lista de tarefas!">
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {renderTaskList()}
-      </ScrollView>
-      <StyledButton onPress={() => navigation.navigate('Task')}>
-        <Plus width={35} height={35} fill="white" />
-      </StyledButton>
+      <>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          {renderTaskList()}
+        </ScrollView>
+        <StyledButton onPress={() => navigation.navigate('Task')}>
+          <Plus width={35} height={35} fill="white" />
+        </StyledButton>
+      </>
     </PageContainer>
   );
 };

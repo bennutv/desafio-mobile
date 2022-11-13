@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Container } from './style';
 
 interface ButtonProps {
-  children: any;
+  children: ReactElement;
   color?: string;
   onPress: () => void;
-  props?: any;
 }
 
 const Button = ({ children, color, onPress, ...props }: ButtonProps) => {

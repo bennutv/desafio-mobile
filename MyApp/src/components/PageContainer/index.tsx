@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Header } from '../Header';
 import { Container, Subtitle, Title } from './style';
 
 interface PageContainerProps {
-  children: any;
+  children: ReactElement;
   pageTitle: string;
   pageSubtitle: string;
   taskPage?: boolean;
