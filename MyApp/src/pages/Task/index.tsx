@@ -2,17 +2,21 @@ import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { PageContainer } from '../../components/PageContainer';
 import { Text } from '../../components/Text';
-import { useApi } from '../../hooks/useApi';
 import { Input, StyledButton } from './styles';
 import Toast from 'react-native-toast-message';
 import { ParamList } from '../../navigation';
+import {
+  useAddTaskMutation,
+  useUpdateTaskMutation,
+} from '../../store/features/api/task';
 
 const editTaskTitle = 'Preencha os campos abaixo para editar a sua tarefa';
 const addTaskTitle = 'Preencha os campos abaixo para adicionar uma nova tarefa';
 
 const Task = () => {
   const navigation = useNavigation();
-  const { addTask, editTask } = useApi();
+  const [addNewTask] = useAddTaskMutation();
+  const [editTask] = useUpdateTaskMutation();
   const { params } = useRoute<RouteProp<ParamList, 'Task'>>();
   const { title, description, id, done } = params || {};
   const [newTitle, setNewTitle] = useState(title || '');
@@ -20,7 +24,7 @@ const Task = () => {
 
   const handleCreateTask = async () => {
     try {
-      await addTask(newTitle, newDescription);
+      await addNewTask({ title: newTitle, description: newDescription });
       Toast.show({
         type: 'success',
         text1: 'Task criada com sucesso',
@@ -72,7 +76,7 @@ const Task = () => {
   return (
     <PageContainer
       taskPage
-      pageTitle={params ? 'Editar tarefa' : 'Nova Tarefa'}
+      pageTitle={params ? 'Editar tarefa' : 'Nova tarefa'}
       pageSubtitle={params ? editTaskTitle : addTaskTitle}>
       <>
         <Input
@@ -87,7 +91,7 @@ const Task = () => {
         />
         <StyledButton disabled={hasNoTask} onPress={handleSubmitTask}>
           <Text color="white" weight="bold">
-            {params ? 'Salvar' : 'Add task'}
+            {params ? 'Salvar' : 'Adicionar tarefa'}
           </Text>
         </StyledButton>
       </>
