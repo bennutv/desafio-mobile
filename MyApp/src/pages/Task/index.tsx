@@ -1,5 +1,5 @@
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PageContainer } from '../../components/PageContainer';
 import { Text } from '../../components/Text';
 import { Input, StyledButton } from './styles';
@@ -15,28 +15,21 @@ const addTaskTitle = 'Preencha os campos abaixo para adicionar uma nova tarefa';
 
 const Task = () => {
   const navigation = useNavigation();
-  const [addNewTask] = useAddTaskMutation();
-  const [editTask] = useUpdateTaskMutation();
+  const [
+    addNewTask,
+    { isError: isAddError, error: addError, isSuccess: isAddSuccess },
+  ] = useAddTaskMutation();
+  const [
+    editTask,
+    { isError: isEditError, error: editError, isSuccess: isEditSuccess },
+  ] = useUpdateTaskMutation();
   const { params } = useRoute<RouteProp<ParamList, 'Task'>>();
   const { title, description, id, done } = params || {};
   const [newTitle, setNewTitle] = useState(title || '');
   const [newDescription, setNewDescription] = useState(description || '');
 
-  const handleCreateTask = async () => {
-    try {
-      await addNewTask({ title: newTitle, description: newDescription });
-      Toast.show({
-        type: 'success',
-        text1: 'Task criada com sucesso',
-      });
-      navigation.goBack();
-    } catch (err) {
-      Toast.show({
-        type: 'error',
-        text1: 'Falha ao criar a task',
-        text2: err.message,
-      });
-    }
+  const handleCreateTask = () => {
+    addNewTask({ title: newTitle, description: newDescription });
   };
 
   const handleEditTask = async () => {
@@ -48,30 +41,57 @@ const Task = () => {
       });
       return;
     }
-    try {
-      await editTask({
-        title: newTitle,
-        description: newDescription,
-        id,
-        done: done || false,
-      });
-      Toast.show({
-        type: 'success',
-        text1: 'Task editada com sucesso',
-      });
-      navigation.goBack();
-    } catch (err) {
-      Toast.show({
-        type: 'error',
-        text1: 'Falha ao editar a task',
-        text2: err.message,
-      });
-    }
+    editTask({
+      title: newTitle,
+      description: newDescription,
+      id,
+      done: done || false,
+    });
   };
 
   const handleSubmitTask = params ? handleEditTask : handleCreateTask;
 
   const hasNoTask = !newTitle || !newDescription;
+
+  useEffect(() => {
+    if (isAddSuccess) {
+      Toast.show({
+        type: 'success',
+        text1: 'Task criada com sucesso',
+      });
+      navigation.goBack();
+    }
+  }, [isAddSuccess, navigation]);
+
+  useEffect(() => {
+    if (isEditSuccess) {
+      Toast.show({
+        type: 'success',
+        text1: 'Task editada com sucesso',
+      });
+      navigation.goBack();
+    }
+  }, [isEditSuccess, navigation]);
+
+  useEffect(() => {
+    if (isAddError) {
+      Toast.show({
+        type: 'error',
+        text1: 'Falha ao criar a task',
+        text2: JSON.stringify(addError),
+      });
+    }
+  }, [addError, isAddError]);
+
+  useEffect(() => {
+    if (isEditError) {
+      Toast.show({
+        type: 'error',
+        text1: 'Falha ao editar a task',
+        text2: JSON.stringify(editError),
+      });
+    }
+  }, [editError, isEditError]);
 
   return (
     <PageContainer
