@@ -71,6 +71,7 @@ $ yarn test
 - Styled Components
 - React Navigation
 - React Native Dotenv
+- Jest e Testing Library
 
 De todos os requisitos solicitados para o desafio, o único que não foi contemplado foi o `Styled System` porque com o `Styled Componentes` foi possível implementar os requisitos solicitados.
 
