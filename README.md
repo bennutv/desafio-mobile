@@ -1,9 +1,7 @@
 # Desafio Mobile Bennu
 Este é o repositório que contempla o teste para a Bennu, um App de TO-DO List construido em React Native
 
-<div style="display:flex;justify-content:center;">
-  <img src="./app.gif" alt="app" style="width:200px;"/>
-</div>
+<img src="./app.gif" alt="app" style="width:200px;"/>
 
 
 ## 🚀 Sobre o desafio
@@ -48,6 +46,9 @@ $ yarn start
 
 Android: 
 ```sh
+$ adb reverse tcp:9001 tcp:9001
+```
+```sh
 $ yarn android
 ```
 iOS: 
@@ -62,10 +63,12 @@ $ yarn test
 ```
 </br>
 
-## Considerações
+## Consideraçõesões 
+- Foi necessário realizar modificações na API para realizar a conclusão de tarefas
+
 ### Foi utilizado no projeto:
 - Yarn
-- React Native
+- React Native (v0.70.5 -> [link para instalação](https://reactnative.dev/docs/environment-setup))
 - Typescript
 - Redux, Redux Toolkit, Redux persist e Redux Query
 - Styled Components
