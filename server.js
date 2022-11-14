@@ -1,10 +1,6 @@
 const app = require("express")();
 const bodyParser = require("body-parser");
 const tasksContainer = require("./tasks.json");
-const cors = require("cors");
-
-app.use(cors());
-
 app.use(
   bodyParser.urlencoded({
     extended: true,
@@ -66,7 +62,7 @@ app.get("/task/:id", (req, res) => {
  * If the task is not found, return a status code 404.
  * If the provided id is not a valid number return a status code 400.
  */
-app.put("/task/update/:id", (req, res) => {
+app.put("/task/update/", (req, res) => {
   const id = parseInt(req.body.id, 10);
 
   if (!Number.isNaN(id)) {
@@ -126,7 +122,7 @@ app.post("/task/create", (req, res) => {
  * If the task is not found, return a status code 404.
  * If the provided id is not a valid number return a status code 400.
  */
-app.delete("/task/delete/:id", (req, res) => {
+app.delete("/task/delete", (req, res) => {
   const id = parseInt(req.body.id, 10);
 
   if (!Number.isNaN(id)) {

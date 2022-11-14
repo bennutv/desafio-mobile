@@ -36,7 +36,7 @@ export const tasksApi = createApi({
 
     updateTask: builder.mutation({
       query: task => ({
-        url: `/task/update/${task.id}`,
+        url: '/task/update',
         method: 'PUT',
         body: task,
       }),
@@ -45,7 +45,7 @@ export const tasksApi = createApi({
 
     deleteTask: builder.mutation({
       query: task => ({
-        url: `/task/delete/${task.id}`,
+        url: '/task/delete',
         method: 'DELETE',
         body: task,
       }),
