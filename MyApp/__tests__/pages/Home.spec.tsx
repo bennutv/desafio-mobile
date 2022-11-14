@@ -4,19 +4,24 @@ import { Home } from '../../src/pages/Home';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../src/assets/theme';
 
+const mockUpdateMutation = jest.fn();
+const mockDeleteMutation = jest.fn();
+
 jest.mock('../../src/store/features/api/task.ts', () => {
   return {
     useTasksQuery: jest.fn().mockImplementation(() => ({
-      data: { tasks: [{ id: 1, title: 'lalla', description: 'lalala' }] },
+      data: { tasks: [{ id: 1, title: 'title', description: 'description' }] },
       isLoading: false,
       refetch: jest.fn(),
     })),
-    useDeleteTaskMutation: jest
-      .fn()
-      .mockReturnValue([jest.fn(), { isError: false, error: null }]),
-    useUpdateTaskMutation: jest
-      .fn()
-      .mockReturnValue([jest.fn(), { isError: false, error: null }]),
+    useDeleteTaskMutation: () => [
+      mockDeleteMutation,
+      { isError: false, error: null },
+    ],
+    useUpdateTaskMutation: () => [
+      mockUpdateMutation,
+      { isError: false, error: null },
+    ],
   };
 });
 

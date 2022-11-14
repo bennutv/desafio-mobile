@@ -100,16 +100,21 @@ const Task = () => {
       pageSubtitle={params ? editTaskTitle : addTaskTitle}>
       <>
         <Input
+          testID="title"
           placeholder="Título"
           value={newTitle || title}
           onChangeText={setNewTitle}
         />
         <Input
+          testID="description"
           placeholder="Descrição"
           value={newDescription || description}
           onChangeText={setNewDescription}
         />
-        <StyledButton disabled={hasNoTask} onPress={handleSubmitTask}>
+        <StyledButton
+          testID="add-or-update-task-button"
+          disabled={hasNoTask}
+          onPress={handleSubmitTask}>
           <Text color="white" weight="bold">
             {params ? 'Salvar' : 'Adicionar tarefa'}
           </Text>

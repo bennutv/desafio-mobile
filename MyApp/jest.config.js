@@ -4,6 +4,10 @@ module.exports = {
     '@testing-library/jest-native/extend-expect',
     './jest.setup.js',
   ],
+  transformIgnorePatterns: [
+    'node_modules/(?!(jest-)?react-native|@?react-navigation|@?react-native-community|@?react-native)',
+  ],
+  setupFiles: ['./node_modules/react-native-gesture-handler/jestSetup.js'],
   testMatch: ['**/__tests__/**/*.(spec|test).[jt]s?(x)?'],
   moduleNameMapper: {
     'styled-components':
