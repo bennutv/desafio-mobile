@@ -1,0 +1,11 @@
+{
+  "typeRoots": ["./@types"],
+  "extends": "@tsconfig/react-native/tsconfig.json",
+  "compilerOptions": {
+    "types": ["@types/styled-components-react-native", "@types/jest"],
+    "strict": true,
+    "useUnknownInCatchVariables": false,
+    "skipLibCheck": true
+  },
+  "exclude": ["jest.config.js"]
+}
