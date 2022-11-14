@@ -18,8 +18,8 @@ import {
   useDeleteTaskMutation,
   useUpdateTaskMutation,
 } from '../../store/features/api/task';
-import Trash from '../../../assets/imgs/trash.svg';
-import Edit from '../../../assets/imgs/edit.svg';
+import Trash from '../../assets/imgs/trash.svg';
+import Edit from '../../assets/imgs/edit.svg';
 import Toast from 'react-native-toast-message';
 
 const TaskListItem = ({ item: task }: { item: Task }) => {

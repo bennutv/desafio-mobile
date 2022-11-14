@@ -102,13 +102,13 @@ const Task = () => {
         <Input
           testID="title"
           placeholder="Título"
-          value={newTitle || title}
+          value={newTitle ?? title}
           onChangeText={setNewTitle}
         />
         <Input
           testID="description"
           placeholder="Descrição"
-          value={newDescription || description}
+          value={newDescription ?? description}
           onChangeText={setNewDescription}
         />
         <StyledButton

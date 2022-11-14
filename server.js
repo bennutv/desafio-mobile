@@ -71,13 +71,11 @@ app.put("/task/update/:id", (req, res) => {
 
   if (!Number.isNaN(id)) {
     const task = tasksContainer.tasks.find((item) => item.id === id);
-    console.log("edit antes", task);
 
     if (task !== null) {
       task.title = req.body.title;
       task.description = req.body.description;
       task.done = req.body.done;
-      console.log("edit depois", task);
 
       return res.status(200).json({
         task,
@@ -112,8 +110,6 @@ app.post("/task/create", (req, res) => {
   };
 
   tasksContainer.tasks.push(task);
-
-  console.log("create", task);
 
   return res.status(201).json({
     message: "Resource created",
